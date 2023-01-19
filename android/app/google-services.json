@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "391995009782",
+    "project_id": "flutter-fire-events",
+    "storage_bucket": "flutter-fire-events.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391995009782:android:60989b08bf15d42e195ad7",
+        "android_client_info": {
+          "package_name": "com.popupbits.flutter_events_2023"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391995009782-440f97agt2lpgiok1oarps0jcmhnm0qk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh5cdEWDooZdvrSmP1_xY3ftQs6PMarNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391995009782-440f97agt2lpgiok1oarps0jcmhnm0qk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "391995009782-eojo47l9da8rig1qj5ft7qke5t51abl9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.popupbits.flutterEvents2023"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
