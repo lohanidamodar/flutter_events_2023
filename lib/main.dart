@@ -103,7 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
         .get();
     for (var doc in snap.docs) {
       final event = doc.data();
-      final day = DateTime.utc(event.date.year, event.date.month, event.date.day);
+      final day =
+          DateTime.utc(event.date.year, event.date.month, event.date.day);
       if (_events[day] == null) {
         _events[day] = [];
       }
@@ -112,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
-  List _getEventsForTheDay(DateTime day) {
+  List<Event> _getEventsForTheDay(DateTime day) {
     return _events[day] ?? [];
   }
 
@@ -120,47 +121,61 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Calendar App')),
-      body: TableCalendar(
-        eventLoader: _getEventsForTheDay,
-        calendarFormat: _calendarFormat,
-        onFormatChanged: (format) {
-          setState(() {
-            _calendarFormat = format;
-          });
-        },
-        focusedDay: _focusedDay,
-        firstDay: _firstDay,
-        lastDay: _lastDay,
-        onPageChanged: (focusedDay) {
-          setState(() {
-            _focusedDay = focusedDay;
-          });
-        },
-        selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
-        onDaySelected: (selectedDay, focusedDay) {
-          print(_events[selectedDay]);
-          setState(() {
-            _selectedDay = selectedDay;
-            _focusedDay = focusedDay;
-          });
-        },
-        calendarStyle: const CalendarStyle(
-          weekendTextStyle: TextStyle(
-            color: Colors.red,
+      body: ListView(
+        children: [
+          TableCalendar(
+            eventLoader: _getEventsForTheDay,
+            calendarFormat: _calendarFormat,
+            onFormatChanged: (format) {
+              setState(() {
+                _calendarFormat = format;
+              });
+            },
+            focusedDay: _focusedDay,
+            firstDay: _firstDay,
+            lastDay: _lastDay,
+            onPageChanged: (focusedDay) {
+              setState(() {
+                _focusedDay = focusedDay;
+              });
+            },
+            selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
+            onDaySelected: (selectedDay, focusedDay) {
+              print(_events[selectedDay]);
+              setState(() {
+                _selectedDay = selectedDay;
+                _focusedDay = focusedDay;
+              });
+            },
+            calendarStyle: const CalendarStyle(
+              weekendTextStyle: TextStyle(
+                color: Colors.red,
+              ),
+              selectedDecoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.red,
+              ),
+            ),
+            calendarBuilders: CalendarBuilders(
+              headerTitleBuilder: (context, day) {
+                return Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(day.toString()),
+                );
+              },
+            ),
           ),
-          selectedDecoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Colors.red,
+          ..._getEventsForTheDay(_selectedDay).map(
+            (event) => ListTile(
+              title: Text(
+                event.title,
+              ),
+              subtitle: Text(
+                event.date.toString(),
+              ),
+            ),
           ),
-        ),
-        calendarBuilders: CalendarBuilders(
-          headerTitleBuilder: (context, day) {
-            return Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(day.toString()),
-            );
-          },
-        ),
+        ],
       ),
     );
   }
