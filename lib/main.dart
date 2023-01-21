@@ -95,8 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _loadFirestoreEvents() async {
+    final firstDay = DateTime(_focusedDay.year, _focusedDay.month, 1);
+    final lastDay = DateTime(_focusedDay.year, _focusedDay.month + 1, 0);
+    _events = {};
+
     final snap = await FirebaseFirestore.instance
         .collection('events')
+        .where('date', isGreaterThanOrEqualTo: firstDay)
+        .where('date', isLessThanOrEqualTo: lastDay)
         .withConverter(
             fromFirestore: Event.fromFirestore,
             toFirestore: (event, options) => event.toFirestore())
@@ -138,6 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
               setState(() {
                 _focusedDay = focusedDay;
               });
+              _loadFirestoreEvents();
             },
             selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
             onDaySelected: (selectedDay, focusedDay) {
