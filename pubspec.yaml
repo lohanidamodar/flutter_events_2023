@@ -6,6 +6,8 @@ version: 1.0.0+1
 environment:
   sdk: '>=2.18.6 <3.0.0'
 dependencies:
+  cloud_firestore: ^4.3.1
+  firebase_core: ^2.4.1
   flutter:
     sdk: flutter
   table_calendar: ^3.0.8
