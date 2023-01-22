@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_events_2023/screens/edit_event.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../model/event.dart';
@@ -123,6 +124,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ..._getEventsForTheDay(_selectedDay).map(
             (event) => EventItem(
                 event: event,
+                onTap: () async {
+                  final res = await Navigator.push<bool>(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => EditEvent(
+                          firstDate: _firstDay,
+                          lastDate: _lastDay,
+                          event: event),
+                    ),
+                  );
+                  if (res ?? false) {
+                    _loadFirestoreEvents();
+                  }
+                },
                 onDelete: () async {
                   final delete = await showDialog<bool>(
                     context: context,
