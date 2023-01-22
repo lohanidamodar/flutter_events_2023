@@ -10,10 +10,10 @@ Flutter Calendar App tutorial
 
 ## Source Code
 
-- [Part 1](https://github.com/lohanidamodar/flutter_events_2023)
+- [Part 1](https://github.com/lohanidamodar/flutter_events_2023/tree/p1-calendar)
 - [Part 2](https://github.com/lohanidamodar/flutter_events_2023/tree/p2-firestore-events)
 - [Part 3](https://github.com/lohanidamodar/flutter_events_2023/tree/p3-optimization-and-more)
-- [Final with Cleanup and CRUD features](https://github.com/lohanidamodar/flutter_events_2023/tree/final)
+- [Final with Cleanup and CRUD features](https://github.com/lohanidamodar/flutter_events_2023)
 
 ## Screenshots
 
